@@ -11,7 +11,6 @@ exports.create = (req, res) => {
 
   // Create a Ingredient
   const ingredient = new Ingredient({
-    ingredientID: req.body.ingredientID,
     ingredientName: req.body.ingredientName,
     price: req.body.price,
   });
@@ -127,6 +126,7 @@ exports.buy = (req, res) => {
   }
   var total = 0;
   var flag = false;
+  console.log(req.body);
   req.body.ingredients.forEach((ingredient, i, arr) => {
     Ingredient.findById(ingredient.id, (err, data) => {
       if (!flag) {
@@ -146,12 +146,12 @@ exports.buy = (req, res) => {
           if (i === arr.length - 1) {
             if (req.body.money < total) {
               res.status(200).send({
-                status: "Gagal",
+                success: false,
                 money: total - req.body.money,
               });
             } else {
               res.status(200).send({
-                status: "Berhasil",
+                success: true,
                 money: req.body.money - total,
               });
             }
