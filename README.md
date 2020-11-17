@@ -16,7 +16,7 @@ A Web Service made using RESTful API
 
 ## Setup
 
-1. Install Node.js
+1. Install [Node.js](https://nodejs.org/en/)
 2. Install Node Libraries
 
 ```
@@ -45,74 +45,57 @@ npm start
 
 ## Screenshot
 
-TODO
+<img src="./screenshot/api_ingredient.png" width="350px">
 
-## Technical
-
-### Database Schema
+## Database Schema
 
 Ingredient(IngredientID, IngredientName, Price)
 
-### Services
+### Ingredient
 
-- POST /buy
+<img src="./screenshot/api_ingredient.png" width="350px">
+
+1. GET /ingredient/:id?price=true
+
+> get detail of ingredient of supplied id (optional: price)
+> output: `Ingredient`
 
 ```
-{
-	"money": integer,
-	"ingredients":[
-		{
-			"id": integer,
-			"amount": integer
-		},
-		...
-		{
-			"id": integer,
-			"amount": integer
-		}
-	]
+Ingredient: {
+  "id": integer,
+  "name": string,
+  "price": integer
 }
 ```
 
-psudocode
+2. GET /ingredient/?price=true
+
+> get detail of all ingredient (optional: price)
+> output: `array of Ingredient`
+
+3. POST /ingredient/buy/
 
 ```
-for every ingredient:
-	if id not in ingredient:
-	  return gagal, 0
-
-total = sum(Price*Amount) for every ingredient
-if money < total:
-	return gagal, total-money
-else:
-	return berhasil, money-total
+{
+  "money": integer,
+  "ingredients":[
+    {
+      "id": integer,
+      "amount": integer,
+    },
+    ...
+    {
+    "id": integer,
+    "amount": integer,
+    }
+  ]
+}
 ```
 
-- GET /{?id=integer}{?price=bool}
+> buy an ingredient with some money
+> output: `integer` (Remaining Money | Needed Money)
 
-pseudocode
-
-```
-if id not in ingredient:
-  return false
-
-fetch Ingredient (all / id=id)
-return [
-	{
-		"id": integer,
-		"name": string,
-		"price": integer
-	},
-	...
-	{
-		"id": integer,
-		"name": string,
-		"price": integer
-	}
-]
-```
-
-- POST /
+4. POST /
 
 ```
 {
@@ -121,7 +104,8 @@ return [
 }
 ```
 
-creates a new ingredient
+> creates a new ingredient
+> output: `integer` inserted id
 
 ## Author
 
