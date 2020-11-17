@@ -43,10 +43,6 @@ use chocosup;
 npm start
 ```
 
-## Screenshot
-
-<img src="./screenshot/api_ingredient.png" width="350px">
-
 ## Database Schema
 
 Ingredient(IngredientID, IngredientName, Price)
@@ -58,6 +54,7 @@ Ingredient(IngredientID, IngredientName, Price)
 1. GET /ingredient/:id?price=true
 
 > get detail of ingredient of supplied id (optional: price)
+>
 > output: `Ingredient`
 
 ```
@@ -71,6 +68,7 @@ Ingredient: {
 2. GET /ingredient/?price=true
 
 > get detail of all ingredient (optional: price)
+>
 > output: `array of Ingredient`
 
 3. POST /ingredient/buy/
@@ -93,6 +91,7 @@ Ingredient: {
 ```
 
 > buy an ingredient with some money
+>
 > output: `integer` (Remaining Money | Needed Money)
 
 4. POST /
@@ -105,6 +104,7 @@ Ingredient: {
 ```
 
 > creates a new ingredient
+>
 > output: `integer` inserted id
 
 ## Author
